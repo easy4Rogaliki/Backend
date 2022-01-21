@@ -23,7 +23,7 @@
 
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
             Grid.Row="2"
             Background="Black"/>
     </Grid>

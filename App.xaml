@@ -4,9 +4,14 @@
              xmlns:local="clr-namespace:Dungeon"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-       
-        
+        <Style TargetType="Button">
+            <Setter Property=""/>
 
-         
+
+        </Style>
+
+
+
+
     </Application.Resources>
 </Application>

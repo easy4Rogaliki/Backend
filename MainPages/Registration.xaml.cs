@@ -54,24 +54,16 @@ namespace Dungeon.MainPages
                 { MessageBox.Show("Игрок с таким логином уже зарегистрирован",
                                 "Уведомление",
                                 MessageBoxButton.OK,
-                                MessageBoxImage.Information); return; 
+                                MessageBoxImage.Information); 
+                    return; 
                 }
-
-
-                
-
             } // конец блока проверки пустот в заполнении
 
             else
             {
                 MessageBox.Show("Ошибка", "Заполните все поля", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-
-
-
         } //конец кнопки регистрациии, всё ломалось из-за неё
-
-
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
