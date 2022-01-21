@@ -21,13 +21,8 @@ namespace Dungeon.Data.Dataset
         }
     
         public int id { get; set; }
-        public int idSwordsman { get; set; }
-        public int idExplorer { get; set; }
-        public int idHealer { get; set; }
+        public string Name { get; set; }
     
-        public virtual Explorer Explorer { get; set; }
-        public virtual Healer Healer { get; set; }
-        public virtual Swordsman Swordsman { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Player> Player { get; set; }
     }

@@ -27,9 +27,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idSwordsman" Type="int" Nullable="false" />
-          <Property Name="idExplorer" Type="int" Nullable="false" />
-          <Property Name="idHealer" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Coords">
           <Key>
@@ -47,24 +45,6 @@
           <Property Name="Damage" Type="int" Nullable="false" />
           <Property Name="Health" Type="int" Nullable="false" />
           <Property Name="idCoords" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Explorer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="OpenFog" Type="bit" Nullable="false" />
-          <Property Name="SettleHorse" Type="bit" Nullable="false" />
-          <Property Name="OpenChest" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Healer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Research" Type="bit" Nullable="false" />
-          <Property Name="Heal" Type="int" Nullable="false" />
-          <Property Name="CastBuff" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -93,14 +73,6 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Swordsman">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Damage" Type="int" Nullable="false" />
-          <Property Name="Health" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -133,42 +105,6 @@
             </Principal>
             <Dependent Role="Cell">
               <PropertyRef Name="idProperty" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Classes_Explorer">
-          <End Role="Explorer" Type="Self.Explorer" Multiplicity="1" />
-          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Explorer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Classes">
-              <PropertyRef Name="idExplorer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Classes_Healer">
-          <End Role="Healer" Type="Self.Healer" Multiplicity="1" />
-          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Healer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Classes">
-              <PropertyRef Name="idHealer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Classes_Swordsman">
-          <End Role="Swordsman" Type="Self.Swordsman" Multiplicity="1" />
-          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Swordsman">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Classes">
-              <PropertyRef Name="idSwordsman" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -262,12 +198,9 @@
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coords" EntityType="Self.Coords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enemy" EntityType="Self.Enemy" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Explorer" EntityType="Self.Explorer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Healer" EntityType="Self.Healer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Map" EntityType="Self.Map" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Swordsman" EntityType="Self.Swordsman" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cell_Coords" Association="Self.FK_Cell_Coords">
             <End Role="Coords" EntitySet="Coords" />
@@ -276,18 +209,6 @@
           <AssociationSet Name="FK_Cell_Property" Association="Self.FK_Cell_Property">
             <End Role="Property" EntitySet="Property" />
             <End Role="Cell" EntitySet="Cell" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Classes_Explorer" Association="Self.FK_Classes_Explorer">
-            <End Role="Explorer" EntitySet="Explorer" />
-            <End Role="Classes" EntitySet="Classes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Classes_Healer" Association="Self.FK_Classes_Healer">
-            <End Role="Healer" EntitySet="Healer" />
-            <End Role="Classes" EntitySet="Classes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Classes_Swordsman" Association="Self.FK_Classes_Swordsman">
-            <End Role="Swordsman" EntitySet="Swordsman" />
-            <End Role="Classes" EntitySet="Classes" />
           </AssociationSet>
           <AssociationSet Name="FK_Enemy_Coords" Association="Self.FK_Enemy_Coords">
             <End Role="Coords" EntitySet="Coords" />
@@ -349,12 +270,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idSwordsman" Type="Int32" Nullable="false" />
-          <Property Name="idExplorer" Type="Int32" Nullable="false" />
-          <Property Name="idHealer" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Explorer" Relationship="Self.FK_Classes_Explorer" FromRole="Classes" ToRole="Explorer" />
-          <NavigationProperty Name="Healer" Relationship="Self.FK_Classes_Healer" FromRole="Classes" ToRole="Healer" />
-          <NavigationProperty Name="Swordsman" Relationship="Self.FK_Classes_Swordsman" FromRole="Classes" ToRole="Swordsman" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Player" Relationship="Self.FK_Player_Classes" FromRole="Classes" ToRole="Player" />
         </EntityType>
         <EntityType Name="Coords">
@@ -378,26 +294,6 @@
           <Property Name="idCoords" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Coords" Relationship="Self.FK_Enemy_Coords" FromRole="Enemy" ToRole="Coords" />
           <NavigationProperty Name="Map" Relationship="Self.FK_Map_Enemy" FromRole="Enemy" ToRole="Map" />
-        </EntityType>
-        <EntityType Name="Explorer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="OpenFog" Type="Boolean" Nullable="false" />
-          <Property Name="SettleHorse" Type="Boolean" Nullable="false" />
-          <Property Name="OpenChest" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Classes" Relationship="Self.FK_Classes_Explorer" FromRole="Explorer" ToRole="Classes" />
-        </EntityType>
-        <EntityType Name="Healer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Research" Type="Boolean" Nullable="false" />
-          <Property Name="Heal" Type="Int32" Nullable="false" />
-          <Property Name="CastBuff" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Classes" Relationship="Self.FK_Classes_Healer" FromRole="Healer" ToRole="Classes" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -434,15 +330,6 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cell" Relationship="Self.FK_Cell_Property" FromRole="Property" ToRole="Cell" />
-        </EntityType>
-        <EntityType Name="Swordsman">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Damage" Type="Int32" Nullable="false" />
-          <Property Name="Health" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Classes" Relationship="Self.FK_Classes_Swordsman" FromRole="Swordsman" ToRole="Classes" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -499,42 +386,6 @@
             </Principal>
             <Dependent Role="Map">
               <PropertyRef Name="idCell" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Classes_Explorer">
-          <End Role="Explorer" Type="Self.Explorer" Multiplicity="1" />
-          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Explorer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Classes">
-              <PropertyRef Name="idExplorer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Classes_Healer">
-          <End Role="Healer" Type="Self.Healer" Multiplicity="1" />
-          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Healer">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Classes">
-              <PropertyRef Name="idHealer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Classes_Swordsman">
-          <End Role="Swordsman" Type="Self.Swordsman" Multiplicity="1" />
-          <End Role="Classes" Type="Self.Classes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Swordsman">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Classes">
-              <PropertyRef Name="idSwordsman" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -604,12 +455,9 @@
           <EntitySet Name="Classes" EntityType="Self.Classes" />
           <EntitySet Name="Coords" EntityType="Self.Coords" />
           <EntitySet Name="Enemy" EntityType="Self.Enemy" />
-          <EntitySet Name="Explorer" EntityType="Self.Explorer" />
-          <EntitySet Name="Healer" EntityType="Self.Healer" />
           <EntitySet Name="Map" EntityType="Self.Map" />
           <EntitySet Name="Player" EntityType="Self.Player" />
           <EntitySet Name="Property" EntityType="Self.Property" />
-          <EntitySet Name="Swordsman" EntityType="Self.Swordsman" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Player_Buff" Association="Self.FK_Player_Buff">
             <End Role="Buff" EntitySet="Buff" />
@@ -626,18 +474,6 @@
           <AssociationSet Name="FK_Map_Cell" Association="Self.FK_Map_Cell">
             <End Role="Cell" EntitySet="Cell" />
             <End Role="Map" EntitySet="Map" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Classes_Explorer" Association="Self.FK_Classes_Explorer">
-            <End Role="Explorer" EntitySet="Explorer" />
-            <End Role="Classes" EntitySet="Classes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Classes_Healer" Association="Self.FK_Classes_Healer">
-            <End Role="Healer" EntitySet="Healer" />
-            <End Role="Classes" EntitySet="Classes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Classes_Swordsman" Association="Self.FK_Classes_Swordsman">
-            <End Role="Swordsman" EntitySet="Swordsman" />
-            <End Role="Classes" EntitySet="Classes" />
           </AssociationSet>
           <AssociationSet Name="FK_Player_Classes" Association="Self.FK_Player_Classes">
             <End Role="Classes" EntitySet="Classes" />
@@ -689,9 +525,7 @@
             <EntityTypeMapping TypeName="GameDatasetModel.Classes">
               <MappingFragment StoreEntitySet="Classes">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idSwordsman" ColumnName="idSwordsman" />
-                <ScalarProperty Name="idExplorer" ColumnName="idExplorer" />
-                <ScalarProperty Name="idHealer" ColumnName="idHealer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -711,26 +545,6 @@
                 <ScalarProperty Name="Damage" ColumnName="Damage" />
                 <ScalarProperty Name="Health" ColumnName="Health" />
                 <ScalarProperty Name="idCoords" ColumnName="idCoords" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Explorer">
-            <EntityTypeMapping TypeName="GameDatasetModel.Explorer">
-              <MappingFragment StoreEntitySet="Explorer">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="OpenFog" ColumnName="OpenFog" />
-                <ScalarProperty Name="SettleHorse" ColumnName="SettleHorse" />
-                <ScalarProperty Name="OpenChest" ColumnName="OpenChest" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Healer">
-            <EntityTypeMapping TypeName="GameDatasetModel.Healer">
-              <MappingFragment StoreEntitySet="Healer">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Research" ColumnName="Research" />
-                <ScalarProperty Name="Heal" ColumnName="Heal" />
-                <ScalarProperty Name="CastBuff" ColumnName="CastBuff" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -762,15 +576,6 @@
               <MappingFragment StoreEntitySet="Property">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Swordsman">
-            <EntityTypeMapping TypeName="GameDatasetModel.Swordsman">
-              <MappingFragment StoreEntitySet="Swordsman">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Damage" ColumnName="Damage" />
-                <ScalarProperty Name="Health" ColumnName="Health" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

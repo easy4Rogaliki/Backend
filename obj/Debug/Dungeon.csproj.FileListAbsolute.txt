@@ -1,0 +1,7 @@
+D:\Game\Code\Dungeon\obj\Debug\Dungeon.csproj.AssemblyReference.cache
+D:\Game\Code\Dungeon\obj\Debug\Dungeon.csproj.SuggestedBindingRedirects.cache
+D:\Game\Code\Dungeon\obj\Debug\MainPages\Autorization.g.cs
+D:\Game\Code\Dungeon\obj\Debug\App.g.cs
+D:\Game\Code\Dungeon\obj\Debug\Dungeon_Content.g.cs
+D:\Game\Code\Dungeon\obj\Debug\Dungeon_MarkupCompile.cache
+D:\Game\Code\Dungeon\obj\Debug\Dungeon_MarkupCompile.lref

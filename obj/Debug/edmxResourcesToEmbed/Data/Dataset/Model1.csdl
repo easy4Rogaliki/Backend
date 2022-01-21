@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GameDatasetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Buff">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Step" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Player" Relationship="Self.FK_Player_Buff" FromRole="Buff" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Cell">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCoords" Type="Int32" Nullable="false" />
+    <Property Name="StatusFog" Type="Boolean" Nullable="false" />
+    <Property Name="idProperty" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Coords" Relationship="Self.FK_Cell_Coords" FromRole="Cell" ToRole="Coords" />
+    <NavigationProperty Name="Property" Relationship="Self.FK_Cell_Property" FromRole="Cell" ToRole="Property" />
+    <NavigationProperty Name="Map" Relationship="Self.FK_Map_Cell" FromRole="Cell" ToRole="Map" />
+  </EntityType>
+  <EntityType Name="Classes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Player" Relationship="Self.FK_Player_Classes" FromRole="Classes" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Coords">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="X" Type="Int32" Nullable="false" />
+    <Property Name="Y" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cell" Relationship="Self.FK_Cell_Coords" FromRole="Coords" ToRole="Cell" />
+    <NavigationProperty Name="Enemy" Relationship="Self.FK_Enemy_Coords" FromRole="Coords" ToRole="Enemy" />
+    <NavigationProperty Name="Player" Relationship="Self.FK_Player_Coords" FromRole="Coords" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Enemy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Damage" Type="Int32" Nullable="false" />
+    <Property Name="Health" Type="Int32" Nullable="false" />
+    <Property Name="idCoords" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Coords" Relationship="Self.FK_Enemy_Coords" FromRole="Enemy" ToRole="Coords" />
+    <NavigationProperty Name="Map" Relationship="Self.FK_Map_Enemy" FromRole="Enemy" ToRole="Map" />
+  </EntityType>
+  <EntityType Name="Map">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCell" Type="Int32" Nullable="false" />
+    <Property Name="idEnemy" Type="Int32" Nullable="false" />
+    <Property Name="idPlayer" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cell" Relationship="Self.FK_Map_Cell" FromRole="Map" ToRole="Cell" />
+    <NavigationProperty Name="Enemy" Relationship="Self.FK_Map_Enemy" FromRole="Map" ToRole="Enemy" />
+    <NavigationProperty Name="Player" Relationship="Self.FK_Map_Player" FromRole="Map" ToRole="Player" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlayerLevel" Type="Int32" Nullable="false" />
+    <Property Name="idBuff" Type="Int32" Nullable="false" />
+    <Property Name="idCoords" Type="Int32" Nullable="false" />
+    <Property Name="idClass" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Buff" Relationship="Self.FK_Player_Buff" FromRole="Player" ToRole="Buff" />
+    <NavigationProperty Name="Classes" Relationship="Self.FK_Player_Classes" FromRole="Player" ToRole="Classes" />
+    <NavigationProperty Name="Coords" Relationship="Self.FK_Player_Coords" FromRole="Player" ToRole="Coords" />
+    <NavigationProperty Name="Map" Relationship="Self.FK_Map_Player" FromRole="Player" ToRole="Map" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Cell" Relationship="Self.FK_Cell_Property" FromRole="Property" ToRole="Cell" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Player_Buff">
+    <End Role="Buff" Type="Self.Buff" Multiplicity="1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Buff">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="idBuff" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cell_Coords">
+    <End Role="Coords" Type="Self.Coords" Multiplicity="1" />
+    <End Role="Cell" Type="Self.Cell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coords">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cell">
+        <PropertyRef Name="idCoords" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cell_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="Cell" Type="Self.Cell" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Cell">
+        <PropertyRef Name="idProperty" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Map_Cell">
+    <End Role="Cell" Type="Self.Cell" Multiplicity="1" />
+    <End Role="Map" Type="Self.Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cell">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Map">
+        <PropertyRef Name="idCell" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_Classes">
+    <End Role="Classes" Type="Self.Classes" Multiplicity="1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Classes">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="idClass" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Enemy_Coords">
+    <End Role="Coords" Type="Self.Coords" Multiplicity="1" />
+    <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coords">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Enemy">
+        <PropertyRef Name="idCoords" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Player_Coords">
+    <End Role="Coords" Type="Self.Coords" Multiplicity="1" />
+    <End Role="Player" Type="Self.Player" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coords">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Player">
+        <PropertyRef Name="idCoords" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Map_Enemy">
+    <End Role="Enemy" Type="Self.Enemy" Multiplicity="1" />
+    <End Role="Map" Type="Self.Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Enemy">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Map">
+        <PropertyRef Name="idEnemy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Map_Player">
+    <End Role="Player" Type="Self.Player" Multiplicity="1" />
+    <End Role="Map" Type="Self.Map" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Map">
+        <PropertyRef Name="idPlayer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GameDatasetEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Buff" EntityType="Self.Buff" />
+    <EntitySet Name="Cell" EntityType="Self.Cell" />
+    <EntitySet Name="Classes" EntityType="Self.Classes" />
+    <EntitySet Name="Coords" EntityType="Self.Coords" />
+    <EntitySet Name="Enemy" EntityType="Self.Enemy" />
+    <EntitySet Name="Map" EntityType="Self.Map" />
+    <EntitySet Name="Player" EntityType="Self.Player" />
+    <EntitySet Name="Property" EntityType="Self.Property" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <AssociationSet Name="FK_Player_Buff" Association="Self.FK_Player_Buff">
+      <End Role="Buff" EntitySet="Buff" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cell_Coords" Association="Self.FK_Cell_Coords">
+      <End Role="Coords" EntitySet="Coords" />
+      <End Role="Cell" EntitySet="Cell" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cell_Property" Association="Self.FK_Cell_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="Cell" EntitySet="Cell" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Map_Cell" Association="Self.FK_Map_Cell">
+      <End Role="Cell" EntitySet="Cell" />
+      <End Role="Map" EntitySet="Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_Classes" Association="Self.FK_Player_Classes">
+      <End Role="Classes" EntitySet="Classes" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Enemy_Coords" Association="Self.FK_Enemy_Coords">
+      <End Role="Coords" EntitySet="Coords" />
+      <End Role="Enemy" EntitySet="Enemy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Player_Coords" Association="Self.FK_Player_Coords">
+      <End Role="Coords" EntitySet="Coords" />
+      <End Role="Player" EntitySet="Player" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Map_Enemy" Association="Self.FK_Map_Enemy">
+      <End Role="Enemy" EntitySet="Enemy" />
+      <End Role="Map" EntitySet="Map" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Map_Player" Association="Self.FK_Map_Player">
+      <End Role="Player" EntitySet="Player" />
+      <End Role="Map" EntitySet="Map" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

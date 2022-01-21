@@ -23,10 +23,7 @@ namespace Dungeon
         public MainWindow()
         {
             InitializeComponent();
-            //еееееее а вы куда уехали?fff
-            Console.WriteLine("Здравствуйте, мы начинаем наше новое шоу ");
-
-            MessageBox.Show("Памагите","Уведомление", MessageBoxButton.OK, MessageBoxImage.Error, MessageBoxResult.OK);
+           
         }
 
 
