@@ -7,41 +7,24 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
- <Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="100*"/>
             <RowDefinition Height="320*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
 
-
-
- <StackPanel
-            Orientation="Horizontal"
-            HorizontalAlignment="Stretch"
-            >
-                <Image
-                Source=""
-               <!-- название игры в виде картинки -->
-                />
-            <StackPanel>
-
-
-
- <Frame
-            Name="CntrWindow"
+        <Frame
+            Name="cntrWindow"
             NavigationUIVisibility="Hidden"
             Grid.Row="1"
-           <!-- здесь будет игра отображаться -->
-           />
-
-
-
- <StackPanel 
-            Grid.Row="2"
-            Background="Black"
-             <!-- либо оставить black либо часть картинки фона при запуске игры (работа дизайнеров) -->
             />
 
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
 
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="2"
+            Background="Black"/>
     </Grid>
 </Window>

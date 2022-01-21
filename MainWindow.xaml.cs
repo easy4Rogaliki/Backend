@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Dungeon.Data.Classes;
+using Dungeon.MainPages;
+using Dungeon.Data.Dataset;
 
 namespace Dungeon
 {
@@ -23,9 +26,12 @@ namespace Dungeon
         public MainWindow()
         {
             InitializeComponent();
-           
-        }
 
+            NavFrame.navFrame = cntrWindow;
+            cntrWindow.Navigate(new Autorization());
+
+            ConnectData.gameDataset = new GameDatasetEntities();
+        }
 
     }
 }

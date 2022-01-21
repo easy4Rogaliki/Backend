@@ -16,10 +16,19 @@
                 Click="BtnLogin_Click"
                 Width="120"
                 Height="40"
+                Content="Войти"
                 />
         </StackPanel>
 
-
+        <StackPanel>
+            <Button
+                Name="BtnReg"
+                Click="BtnReg_Click"
+                Width="120"
+                Height="40"
+                Content="Регистрация"
+                />
+        </StackPanel>
 
         <StackPanel>
             <TextBlock
@@ -30,8 +39,6 @@
                 />
         </StackPanel>
 
-
-
         <StackPanel>
             <TextBlock
              Text="введите пароль:"
@@ -41,11 +48,6 @@
                 />
             <PasswordBox
                 Name="PsbPassword"/>
-
         </StackPanel>
-
-
-
-        
     </Grid>
 </Page>

@@ -35,8 +35,17 @@ namespace Dungeon.MainPages
             if (objPlayer != null)
             {
                 PlayerInfo.player = objPlayer;
-                MessageBox.Show("Добро пожаловать в Средиземье");
+                MessageBox.Show("Добро пожаловать в Средиземье", "Ты обречен", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+            else
+            {
+                MessageBox.Show("Данного пользователя не существует", "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void BtnReg_Click(object sender, RoutedEventArgs e)
+        {
+            NavFrame.navFrame.Navigate(new Registration());
         }
     }
 }
