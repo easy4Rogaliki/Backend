@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="88745ef0f3f242f3a292b5d3f83fb9f1" Name="Diagram1">
+        <EntityTypeShape EntityType="GameDatasetModel.Buff" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Cell" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Classes" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Coords" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Enemy" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Explorer" Width="1.5" PointX="1.5" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Healer" Width="1.5" PointX="1.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Map" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Player" Width="1.5" PointX="6" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Property" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.Swordsman" Width="1.5" PointX="1.5" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="GameDatasetModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="GameDatasetModel.FK_Player_Buff" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Cell_Coords" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Cell_Property" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Map_Cell" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Classes_Explorer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Classes_Healer" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Classes_Swordsman" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Player_Classes" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Enemy_Coords" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Player_Coords" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Map_Enemy" ManuallyRouted="false" />
+        <AssociationConnector Association="GameDatasetModel.FK_Map_Player" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
