@@ -28,7 +28,7 @@ namespace Dungeon
             InitializeComponent();
 
             NavFrame.navFrame = cntrWindow;
-            cntrWindow.Navigate(new Autorization());
+            cntrWindow.Navigate(new MainMenu());
 
             ConnectData.gameDataset = new GameDatasetEntities();
         }

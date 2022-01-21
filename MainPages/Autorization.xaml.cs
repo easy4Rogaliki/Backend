@@ -31,7 +31,7 @@ namespace Dungeon.MainPages
         {
             var objPlayer = ConnectData.gameDataset.Player
                 .FirstOrDefault(x => x.Login == TxbLogin.Text
-                && x.Password == PsbPassword.Password);
+                                     && x.Password == PsbPassword.Password);
             if (objPlayer != null)
             {
                 PlayerInfo.player = objPlayer;

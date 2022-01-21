@@ -1,0 +1,37 @@
+﻿<Page x:Class="Dungeon.MainPages.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Dungeon.MainPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainMenu">
+
+    <Grid>
+
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+            <TextBlock
+                Text="Dungeon Master 1"
+                />
+        </StackPanel>
+
+        <StackPanel 
+         Orientation="Vertical"
+         VerticalAlignment="Center"
+         HorizontalAlignment="Center">
+
+            <Button Margin="10"
+             Name="BtnSingle"
+             Click="BtnSingle_Click"
+             Content="Однопользовательская игра"/>
+
+            <Button Margin="10"
+             Name="BtnMany"
+             Click="BtnMany_Click"
+             Content="Многопользовательская игра"
+            />
+        </StackPanel>
+
+    </Grid>
+</Page>

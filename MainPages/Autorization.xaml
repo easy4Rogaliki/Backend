@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Dungeon.MainPages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Autorization">
+      Title="Авторизация игрока">
 
     <Grid>
         <StackPanel Orientation="Horizontal">
@@ -31,23 +31,19 @@
         </StackPanel>
 
         <StackPanel>
-            <TextBlock
-             Text="введите логин:"
-             />
             <TextBox
-                Name="TxbLogin"
-                />
+                Name="TxbLogin"/>
+            <PasswordBox
+                Name="PsbPassword"/>
         </StackPanel>
 
         <StackPanel>
             <TextBlock
-             Text="введите пароль:"
+             Text="Введите логин:"
              />
-            <TextBox
-                Name="TxbLogin"
-                />
-            <PasswordBox
-                Name="PsbPassword"/>
+            <TextBlock
+             Text="Введите пароль:"
+             />
         </StackPanel>
     </Grid>
 </Page>

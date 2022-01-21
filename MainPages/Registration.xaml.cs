@@ -45,11 +45,11 @@ namespace Dungeon.MainPages
                     //надо думать и менять 100% прописанное ниже
                     idBuff = 0,
                     idClass = 0,
-                    idCoords = StartPoint,
-
-                    
+                    idCoords = StartPoint
+       
                 };
-                var checkPlayer = ConnectData.gameDataset.Player.Count(i => i.Login == TxbLogin.Text); // проверка наличия такого же игрока
+
+                var checkPlayer = ConnectData.gameDataset.Player.Count(i => i.Login == TxbLogin.Text); // проверка наличия такого же игрока в БД
                 if (checkPlayer > 0)
                 { MessageBox.Show("Игрок с таким логином уже зарегистрирован",
                                 "Уведомление",
@@ -57,6 +57,16 @@ namespace Dungeon.MainPages
                                 MessageBoxImage.Information); 
                     return; 
                 }
+                ConnectData.gameDataset.Player.Add(playerAdd);
+                ConnectData.gameDataset.SaveChanges();
+                MessageBox.Show("Профиль успешно Зарегистрирован!",
+                                    "Уведомление",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Information);
+
+                NavFrame.navFrame.Navigate(new Autorization());
+            
+            
             } // конец блока проверки пустот в заполнении
 
             else
@@ -69,7 +79,5 @@ namespace Dungeon.MainPages
         {
             Data.Classes.NavFrame.navFrame.GoBack();
         }
-
-
     }
 }
