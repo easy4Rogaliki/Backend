@@ -23,11 +23,22 @@
                 Content="Назад"/>
         </StackPanel>
 
-        <StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBox
-                Name="TxbLogin"/>
+                Name="TxbLogin"
+                Width="150"
+                Margin="0 20"/>
             <TextBox
                 Name="TxbPassword"/>
+        </StackPanel>
+
+ <StackPanel>
+            <TextBlock
+             Text="Введите логин:"
+             />
+            <TextBlock
+             Text="Введите пароль:"
+             />
         </StackPanel>
 
     </Grid>

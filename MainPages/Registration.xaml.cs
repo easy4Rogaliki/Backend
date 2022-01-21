@@ -30,8 +30,8 @@ namespace Dungeon.MainPages
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            Random rnd = new Random();
-            int StartPoint = rnd.Next(0, 5000); // возможный рандом точки спавна игрока
+            //Random rnd = new Random();
+            //int StartPoint = rnd.Next(0, 5000); // возможный рандом точки спавна игрока
             //ток прикол в стенах, которые обязателны ...
 
             if  (TxbLogin.Text != null && TxbPassword.Text !=  null)
@@ -43,9 +43,9 @@ namespace Dungeon.MainPages
                     PlayerLevel = 1,
 
                     //надо думать и менять 100% прописанное ниже
-                    idBuff = 0,
-                    idClass = 0,
-                    idCoords = StartPoint
+                    idBuff = 6,
+                    //idClass = 0,
+                    //idCoords = 
        
                 };
 
@@ -57,13 +57,23 @@ namespace Dungeon.MainPages
                                 MessageBoxImage.Information); 
                     return; 
                 }
-                ConnectData.gameDataset.Player.Add(playerAdd);
-                ConnectData.gameDataset.SaveChanges();
-                MessageBox.Show("Профиль успешно Зарегистрирован!",
-                                    "Уведомление",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information);
 
+                if (TxbLogin.Text != null && TxbPassword.Text != null)
+                {
+                    ConnectData.gameDataset.Player.Add(playerAdd);
+                    ConnectData.gameDataset.SaveChanges();
+                    MessageBox.Show("Профиль успешно Зарегистрирован!",
+                                        "Уведомление",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Заполните строки",
+                                        "Ошибка",
+                                        MessageBoxButton.OK,
+                                        MessageBoxImage.Error);
+                }
                 NavFrame.navFrame.Navigate(new Autorization());
             
             

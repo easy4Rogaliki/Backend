@@ -18,9 +18,6 @@
                 Height="40"
                 Content="Войти"
                 />
-        </StackPanel>
-
-        <StackPanel>
             <Button
                 Name="BtnReg"
                 Click="BtnReg_Click"
@@ -31,8 +28,13 @@
         </StackPanel>
 
         <StackPanel>
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBox
-                Name="TxbLogin"/>
+                Name="TxbLogin"
+                Width="150"
+                Margin="0 20"/>
             <PasswordBox
                 Name="PsbPassword"/>
         </StackPanel>
