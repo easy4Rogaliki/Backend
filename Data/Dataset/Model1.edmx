@@ -7,71 +7,69 @@
       <Schema Namespace="Хранилище GameDatasetModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Buff">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Step" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Cell">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idCoords" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCoords" Type="int" Nullable="false" />
           <Property Name="StatusFog" Type="bit" Nullable="false" />
-          <Property Name="idProperty" Type="int" Nullable="false" />
+          <Property Name="IdProperty" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Classes">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Coords">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="X" Type="int" Nullable="false" />
           <Property Name="Y" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Enemy">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Damage" Type="int" Nullable="false" />
           <Property Name="Health" Type="int" Nullable="false" />
-          <Property Name="idCoords" Type="int" Nullable="false" />
+          <Property Name="IdCoords" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idCell" Type="int" Nullable="false" />
-          <Property Name="idEnemy" Type="int" Nullable="false" />
-          <Property Name="idPlayer" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCell" Type="int" Nullable="false" />
+          <Property Name="IdEnemy" Type="int" Nullable="false" />
+          <Property Name="IdPlayer" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlayerLevel" Type="int" Nullable="false" />
-          <Property Name="idBuff" Type="int" Nullable="false" />
-          <Property Name="idCoords" Type="int" Nullable="false" />
-          <Property Name="idClass" Type="int" Nullable="false" />
+          <Property Name="IdBuff" Type="int" Nullable="false" />
+          <Property Name="IdCoords" Type="int" Nullable="false" />
+          <Property Name="IdClass" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -84,15 +82,24 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdPlayer" Type="int" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Cell_Coords">
           <End Role="Coords" Type="Self.Coords" Multiplicity="1" />
           <End Role="Cell" Type="Self.Cell" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coords">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Cell">
-              <PropertyRef Name="idCoords" />
+              <PropertyRef Name="IdCoords" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -101,10 +108,10 @@
           <End Role="Cell" Type="Self.Cell" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Property">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Cell">
-              <PropertyRef Name="idProperty" />
+              <PropertyRef Name="IdProperty" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -113,10 +120,10 @@
           <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coords">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Enemy">
-              <PropertyRef Name="idCoords" />
+              <PropertyRef Name="IdCoords" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -125,10 +132,10 @@
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cell">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Map">
-              <PropertyRef Name="idCell" />
+              <PropertyRef Name="IdCell" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -137,10 +144,10 @@
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Enemy">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Map">
-              <PropertyRef Name="idEnemy" />
+              <PropertyRef Name="IdEnemy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -149,10 +156,10 @@
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Player">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Map">
-              <PropertyRef Name="idPlayer" />
+              <PropertyRef Name="IdPlayer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -161,10 +168,10 @@
           <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Buff">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Player">
-              <PropertyRef Name="idBuff" />
+              <PropertyRef Name="IdBuff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -173,10 +180,10 @@
           <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classes">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Player">
-              <PropertyRef Name="idClass" />
+              <PropertyRef Name="IdClass" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -185,10 +192,22 @@
           <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coords">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Player">
-              <PropertyRef Name="idCoords" />
+              <PropertyRef Name="IdCoords" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdPlayer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -202,6 +221,7 @@
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cell_Coords" Association="Self.FK_Cell_Coords">
             <End Role="Coords" EntitySet="Coords" />
             <End Role="Cell" EntitySet="Cell" />
@@ -238,6 +258,10 @@
             <End Role="Coords" EntitySet="Coords" />
             <End Role="Player" EntitySet="Player" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Player" Association="Self.FK_User_Player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -246,38 +270,38 @@
       <Schema Namespace="GameDatasetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Buff">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Step" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Player" Relationship="Self.FK_Player_Buff" FromRole="Buff" ToRole="Player" />
         </EntityType>
         <EntityType Name="Cell">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCoords" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCoords" Type="Int32" Nullable="false" />
           <Property Name="StatusFog" Type="Boolean" Nullable="false" />
-          <Property Name="idProperty" Type="Int32" Nullable="false" />
+          <Property Name="IdProperty" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Coords" Relationship="Self.FK_Cell_Coords" FromRole="Cell" ToRole="Coords" />
           <NavigationProperty Name="Property" Relationship="Self.FK_Cell_Property" FromRole="Cell" ToRole="Property" />
           <NavigationProperty Name="Map" Relationship="Self.FK_Map_Cell" FromRole="Cell" ToRole="Map" />
         </EntityType>
         <EntityType Name="Classes">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Player" Relationship="Self.FK_Player_Classes" FromRole="Classes" ToRole="Player" />
         </EntityType>
         <EntityType Name="Coords">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="X" Type="Int32" Nullable="false" />
           <Property Name="Y" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cell" Relationship="Self.FK_Cell_Coords" FromRole="Coords" ToRole="Cell" />
@@ -286,48 +310,47 @@
         </EntityType>
         <EntityType Name="Enemy">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Damage" Type="Int32" Nullable="false" />
           <Property Name="Health" Type="Int32" Nullable="false" />
-          <Property Name="idCoords" Type="Int32" Nullable="false" />
+          <Property Name="IdCoords" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Coords" Relationship="Self.FK_Enemy_Coords" FromRole="Enemy" ToRole="Coords" />
           <NavigationProperty Name="Map" Relationship="Self.FK_Map_Enemy" FromRole="Enemy" ToRole="Map" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idCell" Type="Int32" Nullable="false" />
-          <Property Name="idEnemy" Type="Int32" Nullable="false" />
-          <Property Name="idPlayer" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCell" Type="Int32" Nullable="false" />
+          <Property Name="IdEnemy" Type="Int32" Nullable="false" />
+          <Property Name="IdPlayer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cell" Relationship="Self.FK_Map_Cell" FromRole="Map" ToRole="Cell" />
           <NavigationProperty Name="Enemy" Relationship="Self.FK_Map_Enemy" FromRole="Map" ToRole="Enemy" />
           <NavigationProperty Name="Player" Relationship="Self.FK_Map_Player" FromRole="Map" ToRole="Player" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PlayerLevel" Type="Int32" Nullable="false" />
-          <Property Name="idBuff" Type="Int32" Nullable="false" />
-          <Property Name="idCoords" Type="Int32" Nullable="false" />
-          <Property Name="idClass" Type="Int32" Nullable="false" />
+          <Property Name="IdBuff" Type="Int32" Nullable="false" />
+          <Property Name="IdCoords" Type="Int32" Nullable="false" />
+          <Property Name="IdClass" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Buff" Relationship="Self.FK_Player_Buff" FromRole="Player" ToRole="Buff" />
           <NavigationProperty Name="Classes" Relationship="Self.FK_Player_Classes" FromRole="Player" ToRole="Classes" />
           <NavigationProperty Name="Coords" Relationship="Self.FK_Player_Coords" FromRole="Player" ToRole="Coords" />
           <NavigationProperty Name="Map" Relationship="Self.FK_Map_Player" FromRole="Player" ToRole="Map" />
+          <NavigationProperty Name="User" Relationship="Self.FK_User_Player" FromRole="Player" ToRole="User" />
         </EntityType>
         <EntityType Name="Property">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Cell" Relationship="Self.FK_Cell_Property" FromRole="Property" ToRole="Cell" />
         </EntityType>
@@ -341,15 +364,25 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPlayer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_User_Player" FromRole="User" ToRole="Player" />
+        </EntityType>
         <Association Name="FK_Player_Buff">
           <End Role="Buff" Type="Self.Buff" Multiplicity="1" />
           <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Buff">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Player">
-              <PropertyRef Name="idBuff" />
+              <PropertyRef Name="IdBuff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -358,10 +391,10 @@
           <End Role="Cell" Type="Self.Cell" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coords">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Cell">
-              <PropertyRef Name="idCoords" />
+              <PropertyRef Name="IdCoords" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -370,10 +403,10 @@
           <End Role="Cell" Type="Self.Cell" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Property">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Cell">
-              <PropertyRef Name="idProperty" />
+              <PropertyRef Name="IdProperty" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -382,10 +415,10 @@
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cell">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Map">
-              <PropertyRef Name="idCell" />
+              <PropertyRef Name="IdCell" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -394,10 +427,10 @@
           <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Classes">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Player">
-              <PropertyRef Name="idClass" />
+              <PropertyRef Name="IdClass" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -406,10 +439,10 @@
           <End Role="Enemy" Type="Self.Enemy" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coords">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Enemy">
-              <PropertyRef Name="idCoords" />
+              <PropertyRef Name="IdCoords" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -418,10 +451,10 @@
           <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Coords">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Player">
-              <PropertyRef Name="idCoords" />
+              <PropertyRef Name="IdCoords" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -430,10 +463,10 @@
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Enemy">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Map">
-              <PropertyRef Name="idEnemy" />
+              <PropertyRef Name="IdEnemy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -442,10 +475,22 @@
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Player">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="Map">
-              <PropertyRef Name="idPlayer" />
+              <PropertyRef Name="IdPlayer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="IdPlayer" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -459,6 +504,7 @@
           <EntitySet Name="Player" EntityType="Self.Player" />
           <EntitySet Name="Property" EntityType="Self.Property" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK_Player_Buff" Association="Self.FK_Player_Buff">
             <End Role="Buff" EntitySet="Buff" />
             <End Role="Player" EntitySet="Player" />
@@ -495,6 +541,10 @@
             <End Role="Player" EntitySet="Player" />
             <End Role="Map" EntitySet="Map" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Player" Association="Self.FK_User_Player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -505,7 +555,7 @@
           <EntitySetMapping Name="Buff">
             <EntityTypeMapping TypeName="GameDatasetModel.Buff">
               <MappingFragment StoreEntitySet="Buff">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Step" ColumnName="Step" />
               </MappingFragment>
@@ -514,17 +564,17 @@
           <EntitySetMapping Name="Cell">
             <EntityTypeMapping TypeName="GameDatasetModel.Cell">
               <MappingFragment StoreEntitySet="Cell">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idCoords" ColumnName="idCoords" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
                 <ScalarProperty Name="StatusFog" ColumnName="StatusFog" />
-                <ScalarProperty Name="idProperty" ColumnName="idProperty" />
+                <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Classes">
             <EntityTypeMapping TypeName="GameDatasetModel.Classes">
               <MappingFragment StoreEntitySet="Classes">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -532,7 +582,7 @@
           <EntitySetMapping Name="Coords">
             <EntityTypeMapping TypeName="GameDatasetModel.Coords">
               <MappingFragment StoreEntitySet="Coords">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
               </MappingFragment>
@@ -541,40 +591,38 @@
           <EntitySetMapping Name="Enemy">
             <EntityTypeMapping TypeName="GameDatasetModel.Enemy">
               <MappingFragment StoreEntitySet="Enemy">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Damage" ColumnName="Damage" />
                 <ScalarProperty Name="Health" ColumnName="Health" />
-                <ScalarProperty Name="idCoords" ColumnName="idCoords" />
+                <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Map">
             <EntityTypeMapping TypeName="GameDatasetModel.Map">
               <MappingFragment StoreEntitySet="Map">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idCell" ColumnName="idCell" />
-                <ScalarProperty Name="idEnemy" ColumnName="idEnemy" />
-                <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdCell" ColumnName="IdCell" />
+                <ScalarProperty Name="IdEnemy" ColumnName="IdEnemy" />
+                <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Player">
             <EntityTypeMapping TypeName="GameDatasetModel.Player">
               <MappingFragment StoreEntitySet="Player">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Login" ColumnName="Login" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PlayerLevel" ColumnName="PlayerLevel" />
-                <ScalarProperty Name="idBuff" ColumnName="idBuff" />
-                <ScalarProperty Name="idCoords" ColumnName="idCoords" />
-                <ScalarProperty Name="idClass" ColumnName="idClass" />
+                <ScalarProperty Name="IdBuff" ColumnName="IdBuff" />
+                <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
+                <ScalarProperty Name="IdClass" ColumnName="IdClass" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Property">
             <EntityTypeMapping TypeName="GameDatasetModel.Property">
               <MappingFragment StoreEntitySet="Property">
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -587,6 +635,16 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="GameDatasetModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

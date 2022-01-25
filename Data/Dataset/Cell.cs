@@ -20,10 +20,10 @@ namespace Dungeon.Data.Dataset
             this.Map = new HashSet<Map>();
         }
     
-        public int id { get; set; }
-        public int idCoords { get; set; }
+        public int Id { get; set; }
+        public int IdCoords { get; set; }
         public bool StatusFog { get; set; }
-        public int idProperty { get; set; }
+        public int IdProperty { get; set; }
     
         public virtual Coords Coords { get; set; }
         public virtual Property Property { get; set; }

@@ -22,7 +22,7 @@ namespace Dungeon.Data.Dataset
             this.Player = new HashSet<Player>();
         }
     
-        public int id { get; set; }
+        public int Id { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
     

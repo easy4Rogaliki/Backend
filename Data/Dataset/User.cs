@@ -12,21 +12,13 @@ namespace Dungeon.Data.Dataset
     using System;
     using System.Collections.Generic;
     
-    public partial class Enemy
+    public partial class User
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Enemy()
-        {
-            this.Map = new HashSet<Map>();
-        }
-    
         public int Id { get; set; }
-        public int Damage { get; set; }
-        public int Health { get; set; }
-        public int IdCoords { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public int IdPlayer { get; set; }
     
-        public virtual Coords Coords { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Map> Map { get; set; }
+        public virtual Player Player { get; set; }
     }
 }

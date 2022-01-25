@@ -34,5 +34,6 @@ namespace Dungeon.Data.Dataset
         public virtual DbSet<Player> Player { get; set; }
         public virtual DbSet<Property> Property { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

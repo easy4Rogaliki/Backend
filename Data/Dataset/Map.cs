@@ -14,10 +14,10 @@ namespace Dungeon.Data.Dataset
     
     public partial class Map
     {
-        public int id { get; set; }
-        public int idCell { get; set; }
-        public int idEnemy { get; set; }
-        public int idPlayer { get; set; }
+        public int Id { get; set; }
+        public int IdCell { get; set; }
+        public int IdEnemy { get; set; }
+        public int IdPlayer { get; set; }
     
         public virtual Cell Cell { get; set; }
         public virtual Enemy Enemy { get; set; }

@@ -18,20 +18,21 @@ namespace Dungeon.Data.Dataset
         public Player()
         {
             this.Map = new HashSet<Map>();
+            this.User = new HashSet<User>();
         }
     
-        public int id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public int Id { get; set; }
         public int PlayerLevel { get; set; }
-        public int idBuff { get; set; }
-        public int idCoords { get; set; }
-        public int idClass { get; set; }
+        public int IdBuff { get; set; }
+        public int IdCoords { get; set; }
+        public int IdClass { get; set; }
     
         public virtual Buff Buff { get; set; }
         public virtual Classes Classes { get; set; }
         public virtual Coords Coords { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Map> Map { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> User { get; set; }
     }
 }

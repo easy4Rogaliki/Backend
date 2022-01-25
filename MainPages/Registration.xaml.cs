@@ -34,60 +34,72 @@ namespace Dungeon.MainPages
             //int StartPoint = rnd.Next(0, 5000); // возможный рандом точки спавна игрока
             //ток прикол в стенах, которые обязателны ...
 
-            if  (TxbLogin.Text != null && TxbPassword.Text !=  null)
+            try
             {
-                Player playerAdd = new Player
-                {
-                    Login = TxbLogin.Text,
-                    Password = TxbPassword.Text,
-                    PlayerLevel = 1,
-
-                    //надо думать и менять 100% прописанное ниже
-                    idBuff = 6,
-                    //idClass = 0,
-                    //idCoords = 
-       
-                };
-
-                var checkPlayer = ConnectData.gameDataset.Player.Count(i => i.Login == TxbLogin.Text); // проверка наличия такого же игрока в БД
-                if (checkPlayer > 0)
-                { MessageBox.Show("Игрок с таким логином уже зарегистрирован",
-                                "Уведомление",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information); 
-                    return; 
-                }
-
                 if (TxbLogin.Text != null && TxbPassword.Text != null)
                 {
-                    ConnectData.gameDataset.Player.Add(playerAdd);
-                    ConnectData.gameDataset.SaveChanges();
-                    MessageBox.Show("Профиль успешно Зарегистрирован!",
-                                        "Уведомление",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Information);
-                }
+                    User userAdd = new User
+                    {
+                        Login = TxbLogin.Text,
+                        Password = TxbPassword.Text,
+                        //IdPlayer = 1 - здесь должно быть что-то типа счетчика. При регистрации каждому новому пользователю
+                        //               присваивать новый IdPlayer
+                        
+                        //PlayerLevel = 1,
+                        //надо думать и менять 100% прописанное ниже
+                        //idBuff = 6,
+                        //idClass = 0,
+                        //idCoords = 
+
+                    };
+
+                    var checkUser = ConnectData.gameDataset.User.Count(i => i.Login == TxbLogin.Text); // проверка наличия такого же игрока в БД
+                    if (checkUser > 0)
+                    {
+                        MessageBox.Show("Игрок с таким логином уже зарегистрирован",
+                                      "Уведомление",
+                                      MessageBoxButton.OK,
+                                      MessageBoxImage.Information);
+                        return;
+                    }
+
+                    if (TxbLogin.Text != null && TxbPassword.Text != null)
+                    {
+                        ConnectData.gameDataset.User.Add(userAdd);
+                        ConnectData.gameDataset.SaveChanges();
+                        MessageBox.Show("Профиль успешно Зарегистрирован!",
+                                            "Уведомление",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Заполните строки",
+                                            "Ошибка",
+                                            MessageBoxButton.OK,
+                                            MessageBoxImage.Error);
+                    }
+                    NavFrame.navFrame.Navigate(new Autorization());
+                } // конец блока проверки пустот в заполнении
+
                 else
                 {
-                    MessageBox.Show("Заполните строки",
-                                        "Ошибка",
-                                        MessageBoxButton.OK,
-                                        MessageBoxImage.Error);
+                    MessageBox.Show("Ошибка", "Заполните все поля", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
-                NavFrame.navFrame.Navigate(new Autorization());
-            
-            
-            } // конец блока проверки пустот в заполнении
-
-            else
+            }
+            catch (Exception ex)
             {
-                MessageBox.Show("Ошибка", "Заполните все поля", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    ex.Data.ToString(),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Stop);
             }
         } //конец кнопки регистрациии, всё ломалось из-за неё
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            Data.Classes.NavFrame.navFrame.GoBack();
+            NavFrame.navFrame.GoBack();
         }
     }
 }
