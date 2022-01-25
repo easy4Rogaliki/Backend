@@ -87,6 +87,7 @@
     <Compile Include="Data\Classes\ConnectData.cs" />
     <Compile Include="Data\Classes\NavFrame.cs" />
     <Compile Include="Data\Classes\PlayerInfo.cs" />
+    <Compile Include="Data\Classes\UserInfo.cs" />
     <Compile Include="Data\Dataset\Buff.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

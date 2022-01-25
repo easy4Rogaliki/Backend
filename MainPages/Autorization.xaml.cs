@@ -29,17 +29,28 @@ namespace Dungeon.MainPages
 
         private void BtnLogin_Click(object sender, RoutedEventArgs e)
         {
-            var objPlayer = ConnectData.gameDataset.Player
+            try
+            {
+                var objUser = ConnectData.gameDataset.User
                 .FirstOrDefault(x => x.Login == TxbLogin.Text
                                      && x.Password == PsbPassword.Password);
-            if (objPlayer != null)
-            {
-                PlayerInfo.player = objPlayer;
-                MessageBox.Show("Добро пожаловать в Средиземье", "Ты обречен", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (objUser != null)
+                {
+                    UserInfo.user = objUser;
+                    MessageBox.Show("Добро пожаловать в Средиземье", "Ты обречен", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Данного пользователя не существует", "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Данного пользователя не существует", "Упс...", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(
+                    ex.Message.ToString(),
+                    ex.Data.ToString(),
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Stop);
             }
         }
 

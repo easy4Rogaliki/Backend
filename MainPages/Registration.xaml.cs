@@ -42,15 +42,17 @@ namespace Dungeon.MainPages
                     {
                         Login = TxbLogin.Text,
                         Password = TxbPassword.Text,
-                        //IdPlayer = 1 - здесь должно быть что-то типа счетчика. При регистрации каждому новому пользователю
-                        //               присваивать новый IdPlayer
-                        
+                        IdPlayer = 1     //- здесь должно быть что-то типа счетчика. При регистрации каждому новому пользователю
+                                         //присваивать новый IdPlayer
+                    };
+
+                    Player playerAdd = new Player
+                    {
                         //PlayerLevel = 1,
                         //надо думать и менять 100% прописанное ниже
                         //idBuff = 6,
                         //idClass = 0,
                         //idCoords = 
-
                     };
 
                     var checkUser = ConnectData.gameDataset.User.Count(i => i.Login == TxbLogin.Text); // проверка наличия такого же игрока в БД

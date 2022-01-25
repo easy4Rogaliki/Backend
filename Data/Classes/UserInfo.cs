@@ -7,8 +7,8 @@ using Dungeon.Data.Dataset;
 
 namespace Dungeon.Data.Classes
 {
-    internal class PlayerInfo
+    internal class UserInfo
     {
-        public static Player playerInfo { get; set; }
+        public static User user { get; set; }
     }
 }
