@@ -16,11 +16,7 @@ namespace Dungeon.Data.Dataset
     {
         public int Id { get; set; }
         public int IdCell { get; set; }
-        public int IdEnemy { get; set; }
-        public int IdPlayer { get; set; }
     
         public virtual Cell Cell { get; set; }
-        public virtual Enemy Enemy { get; set; }
-        public virtual Player Player { get; set; }
     }
 }

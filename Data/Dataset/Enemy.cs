@@ -14,19 +14,11 @@ namespace Dungeon.Data.Dataset
     
     public partial class Enemy
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Enemy()
-        {
-            this.Map = new HashSet<Map>();
-        }
-    
         public int Id { get; set; }
         public int Damage { get; set; }
         public int Health { get; set; }
         public int IdCoords { get; set; }
     
         public virtual Coords Coords { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Map> Map { get; set; }
     }
 }

@@ -41,7 +41,6 @@ namespace Dungeon.MainPages
         private void DrawGameArea()
         {
             int CooX = 0, CooY = 0;
-
         }
     }
 }

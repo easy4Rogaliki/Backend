@@ -46,14 +46,20 @@
           <Property Name="Health" Type="int" Nullable="false" />
           <Property Name="IdCoords" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdBuff" Type="int" Nullable="false" />
+          <Property Name="IdThing" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Map">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdCell" Type="int" Nullable="false" />
-          <Property Name="IdEnemy" Type="int" Nullable="false" />
-          <Property Name="IdPlayer" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -61,7 +67,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PlayerLevel" Type="int" Nullable="false" />
-          <Property Name="IdBuff" Type="int" Nullable="false" />
+          <Property Name="IdInventory" Type="int" Nullable="false" />
           <Property Name="IdCoords" Type="int" Nullable="false" />
           <Property Name="IdClass" Type="int" Nullable="false" />
         </EntityType>
@@ -81,6 +87,13 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Thing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -127,6 +140,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Inventory_Buff">
+          <End Role="Buff" Type="Self.Buff" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdBuff" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_Thing">
+          <End Role="Thing" Type="Self.Thing" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Thing">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdThing" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Map_Cell">
           <End Role="Cell" Type="Self.Cell" Multiplicity="1" />
           <End Role="Map" Type="Self.Map" Multiplicity="*" />
@@ -136,42 +173,6 @@
             </Principal>
             <Dependent Role="Map">
               <PropertyRef Name="IdCell" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Map_Enemy">
-          <End Role="Enemy" Type="Self.Enemy" Multiplicity="1" />
-          <End Role="Map" Type="Self.Map" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Enemy">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Map">
-              <PropertyRef Name="IdEnemy" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Map_Player">
-          <End Role="Player" Type="Self.Player" Multiplicity="1" />
-          <End Role="Map" Type="Self.Map" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Player">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Map">
-              <PropertyRef Name="IdPlayer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Player_Buff">
-          <End Role="Buff" Type="Self.Buff" Multiplicity="1" />
-          <End Role="Player" Type="Self.Player" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Buff">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Player">
-              <PropertyRef Name="IdBuff" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -199,6 +200,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Player_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Player">
+              <PropertyRef Name="IdInventory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Player">
           <End Role="Player" Type="Self.Player" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -217,10 +230,12 @@
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Coords" EntityType="Self.Coords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Enemy" EntityType="Self.Enemy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Map" EntityType="Self.Map" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Thing" EntityType="Self.Thing" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cell_Coords" Association="Self.FK_Cell_Coords">
             <End Role="Coords" EntitySet="Coords" />
@@ -234,21 +249,17 @@
             <End Role="Coords" EntitySet="Coords" />
             <End Role="Enemy" EntitySet="Enemy" />
           </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Buff" Association="Self.FK_Inventory_Buff">
+            <End Role="Buff" EntitySet="Buff" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_Thing" Association="Self.FK_Inventory_Thing">
+            <End Role="Thing" EntitySet="Thing" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
           <AssociationSet Name="FK_Map_Cell" Association="Self.FK_Map_Cell">
             <End Role="Cell" EntitySet="Cell" />
             <End Role="Map" EntitySet="Map" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Map_Enemy" Association="Self.FK_Map_Enemy">
-            <End Role="Enemy" EntitySet="Enemy" />
-            <End Role="Map" EntitySet="Map" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Map_Player" Association="Self.FK_Map_Player">
-            <End Role="Player" EntitySet="Player" />
-            <End Role="Map" EntitySet="Map" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Player_Buff" Association="Self.FK_Player_Buff">
-            <End Role="Buff" EntitySet="Buff" />
-            <End Role="Player" EntitySet="Player" />
           </AssociationSet>
           <AssociationSet Name="FK_Player_Classes" Association="Self.FK_Player_Classes">
             <End Role="Classes" EntitySet="Classes" />
@@ -256,6 +267,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Player_Coords" Association="Self.FK_Player_Coords">
             <End Role="Coords" EntitySet="Coords" />
+            <End Role="Player" EntitySet="Player" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Player_Inventory" Association="Self.FK_Player_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Player" EntitySet="Player" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Player" Association="Self.FK_User_Player">
@@ -275,7 +290,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Step" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Player" Relationship="Self.FK_Player_Buff" FromRole="Buff" ToRole="Player" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Buff" FromRole="Buff" ToRole="Inventory" />
         </EntityType>
         <EntityType Name="Cell">
           <Key>
@@ -317,7 +332,17 @@
           <Property Name="Health" Type="Int32" Nullable="false" />
           <Property Name="IdCoords" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Coords" Relationship="Self.FK_Enemy_Coords" FromRole="Enemy" ToRole="Coords" />
-          <NavigationProperty Name="Map" Relationship="Self.FK_Map_Enemy" FromRole="Enemy" ToRole="Map" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdBuff" Type="Int32" Nullable="false" />
+          <Property Name="IdThing" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Buff" Relationship="Self.FK_Inventory_Buff" FromRole="Inventory" ToRole="Buff" />
+          <NavigationProperty Name="Thing" Relationship="Self.FK_Inventory_Thing" FromRole="Inventory" ToRole="Thing" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Player_Inventory" FromRole="Inventory" ToRole="Player" />
         </EntityType>
         <EntityType Name="Map">
           <Key>
@@ -325,11 +350,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdCell" Type="Int32" Nullable="false" />
-          <Property Name="IdEnemy" Type="Int32" Nullable="false" />
-          <Property Name="IdPlayer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Cell" Relationship="Self.FK_Map_Cell" FromRole="Map" ToRole="Cell" />
-          <NavigationProperty Name="Enemy" Relationship="Self.FK_Map_Enemy" FromRole="Map" ToRole="Enemy" />
-          <NavigationProperty Name="Player" Relationship="Self.FK_Map_Player" FromRole="Map" ToRole="Player" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -337,13 +358,12 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PlayerLevel" Type="Int32" Nullable="false" />
-          <Property Name="IdBuff" Type="Int32" Nullable="false" />
+          <Property Name="IdInventory" Type="Int32" Nullable="false" />
           <Property Name="IdCoords" Type="Int32" Nullable="false" />
           <Property Name="IdClass" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Buff" Relationship="Self.FK_Player_Buff" FromRole="Player" ToRole="Buff" />
           <NavigationProperty Name="Classes" Relationship="Self.FK_Player_Classes" FromRole="Player" ToRole="Classes" />
           <NavigationProperty Name="Coords" Relationship="Self.FK_Player_Coords" FromRole="Player" ToRole="Coords" />
-          <NavigationProperty Name="Map" Relationship="Self.FK_Map_Player" FromRole="Player" ToRole="Map" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Player_Inventory" FromRole="Player" ToRole="Inventory" />
           <NavigationProperty Name="User" Relationship="Self.FK_User_Player" FromRole="Player" ToRole="User" />
         </EntityType>
         <EntityType Name="Property">
@@ -364,6 +384,14 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Thing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_Thing" FromRole="Thing" ToRole="Inventory" />
+        </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
@@ -374,14 +402,14 @@
           <Property Name="IdPlayer" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Player" Relationship="Self.FK_User_Player" FromRole="User" ToRole="Player" />
         </EntityType>
-        <Association Name="FK_Player_Buff">
+        <Association Name="FK_Inventory_Buff">
           <End Role="Buff" Type="Self.Buff" Multiplicity="1" />
-          <End Role="Player" Type="Self.Player" Multiplicity="*" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Buff">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Player">
+            <Dependent Role="Inventory">
               <PropertyRef Name="IdBuff" />
             </Dependent>
           </ReferentialConstraint>
@@ -458,27 +486,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Map_Enemy">
-          <End Role="Enemy" Type="Self.Enemy" Multiplicity="1" />
-          <End Role="Map" Type="Self.Map" Multiplicity="*" />
+        <Association Name="FK_Inventory_Thing">
+          <End Role="Thing" Type="Self.Thing" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Enemy">
+            <Principal Role="Thing">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Map">
-              <PropertyRef Name="IdEnemy" />
+            <Dependent Role="Inventory">
+              <PropertyRef Name="IdThing" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Map_Player">
-          <End Role="Player" Type="Self.Player" Multiplicity="1" />
-          <End Role="Map" Type="Self.Map" Multiplicity="*" />
+        <Association Name="FK_Player_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Player">
+            <Principal Role="Inventory">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Map">
-              <PropertyRef Name="IdPlayer" />
+            <Dependent Role="Player">
+              <PropertyRef Name="IdInventory" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -500,14 +528,16 @@
           <EntitySet Name="Classes" EntityType="Self.Classes" />
           <EntitySet Name="Coords" EntityType="Self.Coords" />
           <EntitySet Name="Enemy" EntityType="Self.Enemy" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
           <EntitySet Name="Map" EntityType="Self.Map" />
           <EntitySet Name="Player" EntityType="Self.Player" />
           <EntitySet Name="Property" EntityType="Self.Property" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Thing" EntityType="Self.Thing" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Player_Buff" Association="Self.FK_Player_Buff">
+          <AssociationSet Name="FK_Inventory_Buff" Association="Self.FK_Inventory_Buff">
             <End Role="Buff" EntitySet="Buff" />
-            <End Role="Player" EntitySet="Player" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Cell_Coords" Association="Self.FK_Cell_Coords">
             <End Role="Coords" EntitySet="Coords" />
@@ -533,13 +563,13 @@
             <End Role="Coords" EntitySet="Coords" />
             <End Role="Player" EntitySet="Player" />
           </AssociationSet>
-          <AssociationSet Name="FK_Map_Enemy" Association="Self.FK_Map_Enemy">
-            <End Role="Enemy" EntitySet="Enemy" />
-            <End Role="Map" EntitySet="Map" />
+          <AssociationSet Name="FK_Inventory_Thing" Association="Self.FK_Inventory_Thing">
+            <End Role="Thing" EntitySet="Thing" />
+            <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Map_Player" Association="Self.FK_Map_Player">
+          <AssociationSet Name="FK_Player_Inventory" Association="Self.FK_Player_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
             <End Role="Player" EntitySet="Player" />
-            <End Role="Map" EntitySet="Map" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Player" Association="Self.FK_User_Player">
             <End Role="Player" EntitySet="Player" />
@@ -598,13 +628,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="GameDatasetModel.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdBuff" ColumnName="IdBuff" />
+                <ScalarProperty Name="IdThing" ColumnName="IdThing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Map">
             <EntityTypeMapping TypeName="GameDatasetModel.Map">
               <MappingFragment StoreEntitySet="Map">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="IdCell" ColumnName="IdCell" />
-                <ScalarProperty Name="IdEnemy" ColumnName="IdEnemy" />
-                <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -613,7 +650,7 @@
               <MappingFragment StoreEntitySet="Player">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="PlayerLevel" ColumnName="PlayerLevel" />
-                <ScalarProperty Name="IdBuff" ColumnName="IdBuff" />
+                <ScalarProperty Name="IdInventory" ColumnName="IdInventory" />
                 <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
                 <ScalarProperty Name="IdClass" ColumnName="IdClass" />
               </MappingFragment>
@@ -635,6 +672,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Thing">
+            <EntityTypeMapping TypeName="GameDatasetModel.Thing">
+              <MappingFragment StoreEntitySet="Thing">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

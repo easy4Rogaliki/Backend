@@ -12,19 +12,21 @@ namespace Dungeon.Data.Dataset
     using System;
     using System.Collections.Generic;
     
-    public partial class Buff
+    public partial class Inventory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Buff()
+        public Inventory()
         {
-            this.Inventory = new HashSet<Inventory>();
+            this.Player = new HashSet<Player>();
         }
     
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int Step { get; set; }
+        public int IdBuff { get; set; }
+        public int IdThing { get; set; }
     
+        public virtual Buff Buff { get; set; }
+        public virtual Thing Thing { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventory> Inventory { get; set; }
+        public virtual ICollection<Player> Player { get; set; }
     }
 }

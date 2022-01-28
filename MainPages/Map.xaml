@@ -18,11 +18,13 @@
                 Width="800" Height="320">
         </Canvas>
 
-        <Rectangle
-            Fill="White"
-            Height="20"
-            Width="20"
-            />
+        <DataGrid>
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    x:Name="Field"
+                    />
+            </DataGrid.Columns>
+        </DataGrid>
 
     </Grid>
 </Page>

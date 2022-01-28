@@ -30,10 +30,12 @@ namespace Dungeon.Data.Dataset
         public virtual DbSet<Classes> Classes { get; set; }
         public virtual DbSet<Coords> Coords { get; set; }
         public virtual DbSet<Enemy> Enemy { get; set; }
+        public virtual DbSet<Inventory> Inventory { get; set; }
         public virtual DbSet<Map> Map { get; set; }
         public virtual DbSet<Player> Player { get; set; }
         public virtual DbSet<Property> Property { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Thing> Thing { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }
