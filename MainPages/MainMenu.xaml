@@ -31,6 +31,12 @@
              Click="BtnMany_Click"
              Content="Многопользовательская игра"
             />
+
+            <Button Margin="10"
+             Name="BtnExit"
+             Click="BtnExit_Click"
+             Content="Выход"
+            />
         </StackPanel>
 
     </Grid>

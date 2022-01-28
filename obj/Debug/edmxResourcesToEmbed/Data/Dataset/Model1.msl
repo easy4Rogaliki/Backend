@@ -4,7 +4,7 @@
     <EntitySetMapping Name="Buff">
       <EntityTypeMapping TypeName="GameDatasetModel.Buff">
         <MappingFragment StoreEntitySet="Buff">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Step" ColumnName="Step" />
         </MappingFragment>
@@ -13,17 +13,17 @@
     <EntitySetMapping Name="Cell">
       <EntityTypeMapping TypeName="GameDatasetModel.Cell">
         <MappingFragment StoreEntitySet="Cell">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idCoords" ColumnName="idCoords" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
           <ScalarProperty Name="StatusFog" ColumnName="StatusFog" />
-          <ScalarProperty Name="idProperty" ColumnName="idProperty" />
+          <ScalarProperty Name="IdProperty" ColumnName="IdProperty" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Classes">
       <EntityTypeMapping TypeName="GameDatasetModel.Classes">
         <MappingFragment StoreEntitySet="Classes">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -31,7 +31,7 @@
     <EntitySetMapping Name="Coords">
       <EntityTypeMapping TypeName="GameDatasetModel.Coords">
         <MappingFragment StoreEntitySet="Coords">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="X" ColumnName="X" />
           <ScalarProperty Name="Y" ColumnName="Y" />
         </MappingFragment>
@@ -40,40 +40,38 @@
     <EntitySetMapping Name="Enemy">
       <EntityTypeMapping TypeName="GameDatasetModel.Enemy">
         <MappingFragment StoreEntitySet="Enemy">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Damage" ColumnName="Damage" />
           <ScalarProperty Name="Health" ColumnName="Health" />
-          <ScalarProperty Name="idCoords" ColumnName="idCoords" />
+          <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Map">
       <EntityTypeMapping TypeName="GameDatasetModel.Map">
         <MappingFragment StoreEntitySet="Map">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="idCell" ColumnName="idCell" />
-          <ScalarProperty Name="idEnemy" ColumnName="idEnemy" />
-          <ScalarProperty Name="idPlayer" ColumnName="idPlayer" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdCell" ColumnName="IdCell" />
+          <ScalarProperty Name="IdEnemy" ColumnName="IdEnemy" />
+          <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Player">
       <EntityTypeMapping TypeName="GameDatasetModel.Player">
         <MappingFragment StoreEntitySet="Player">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="Login" ColumnName="Login" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="PlayerLevel" ColumnName="PlayerLevel" />
-          <ScalarProperty Name="idBuff" ColumnName="idBuff" />
-          <ScalarProperty Name="idCoords" ColumnName="idCoords" />
-          <ScalarProperty Name="idClass" ColumnName="idClass" />
+          <ScalarProperty Name="IdBuff" ColumnName="IdBuff" />
+          <ScalarProperty Name="IdCoords" ColumnName="IdCoords" />
+          <ScalarProperty Name="IdClass" ColumnName="IdClass" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Property">
       <EntityTypeMapping TypeName="GameDatasetModel.Property">
         <MappingFragment StoreEntitySet="Property">
-          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -86,6 +84,16 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="GameDatasetModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IdPlayer" ColumnName="IdPlayer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

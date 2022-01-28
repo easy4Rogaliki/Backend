@@ -38,5 +38,10 @@ namespace Dungeon.MainPages
         {
             NavFrame.navFrame.Navigate(new Autorization());
         }
+
+        private void BtnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

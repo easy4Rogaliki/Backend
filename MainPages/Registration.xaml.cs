@@ -32,7 +32,7 @@ namespace Dungeon.MainPages
         {
             //Random rnd = new Random();
             //int StartPoint = rnd.Next(0, 5000); // возможный рандом точки спавна игрока
-            //ток прикол в стенах, которые обязателны ...
+            //ток прикол в стенах, которые обязательны ...
 
             try
             {
