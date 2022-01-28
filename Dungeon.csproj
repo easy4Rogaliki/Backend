@@ -72,6 +72,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainPages\Map.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPages\Registration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -85,6 +89,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\Classes\ConnectData.cs" />
+    <Compile Include="Data\Classes\MapGenerator.cs" />
     <Compile Include="Data\Classes\NavFrame.cs" />
     <Compile Include="Data\Classes\PlayerInfo.cs" />
     <Compile Include="Data\Classes\UserInfo.cs" />
@@ -138,6 +143,9 @@
     </Compile>
     <Compile Include="MainPages\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPages\Map.xaml.cs">
+      <DependentUpon>Map.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPages\Registration.xaml.cs">
       <DependentUpon>Registration.xaml</DependentUpon>

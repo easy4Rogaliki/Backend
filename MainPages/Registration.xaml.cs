@@ -30,7 +30,7 @@ namespace Dungeon.MainPages
 
         private void BtnRegister_Click(object sender, RoutedEventArgs e)
         {
-            //Random rnd = new Random();
+            Random rnd = new Random();
             //int StartPoint = rnd.Next(0, 5000); // возможный рандом точки спавна игрока
             //ток прикол в стенах, которые обязательны ...
 
@@ -42,17 +42,15 @@ namespace Dungeon.MainPages
                     {
                         Login = TxbLogin.Text,
                         Password = TxbPassword.Text,
-                        IdPlayer = 1     //- здесь должно быть что-то типа счетчика. При регистрации каждому новому пользователю
+                        IdPlayer = 1      //- здесь должно быть что-то типа счетчика. При регистрации каждому новому пользователю
                                          //присваивать новый IdPlayer
                     };
 
                     Player playerAdd = new Player
                     {
-                        //PlayerLevel = 1,
+                        PlayerLevel = 1,
                         //надо думать и менять 100% прописанное ниже
-                        //idBuff = 6,
-                        //idClass = 0,
-                        //idCoords = 
+                        
                     };
 
                     var checkUser = ConnectData.gameDataset.User.Count(i => i.Login == TxbLogin.Text); // проверка наличия такого же игрока в БД
