@@ -91,11 +91,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\Classes\Character\Character.cs" />
     <Compile Include="Data\Classes\ConnectData.cs" />
     <Compile Include="Data\Classes\MapGenerator.cs" />
+    <Compile Include="Data\Classes\Mobs\Boss.cs" />
+    <Compile Include="Data\Classes\Mobs\Enemy.cs" />
     <Compile Include="Data\Classes\NavFrame.cs" />
-    <Compile Include="Data\Classes\PlayerInfo.cs" />
-    <Compile Include="Data\Classes\UserInfo.cs" />
+    <Compile Include="Data\Classes\UserPlayerInfo\PlayerInfo.cs" />
+    <Compile Include="Data\Classes\UserPlayerInfo\UserInfo.cs" />
     <Compile Include="Data\Dataset\Buff.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Dataset\Enemy.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Dataset\Inventory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Dataset\Map.cs">
@@ -136,6 +142,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Dataset\sysdiagrams.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\Dataset\Thing.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\Dataset\User.cs">
@@ -195,7 +204,6 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Data\Dataset\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

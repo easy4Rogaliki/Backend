@@ -23,14 +23,32 @@ namespace Dungeon.MainPages
         public Map()
         {
             InitializeComponent();
+
+            //
+            List<List<int>> MapSize = new List<List<int>>();
+
+            for (int x = 0; x <= 50; x++)
+            {
+                Random random = new Random();
+                random.Next(1, 7);
+
+                MapSize[0].Add(x);
+                for (int y = 0; y <= 100; y++)
+                {
+                    MapSize[1].Add(y);
+                }
+            }
+            //
         }
+    
 
 
-        // 10000 значений координат всего / 5000 клеточек
-        // 592 на стены по периметру
-        // 4 408 на остальные клетки и свойства
-        // while id <= 300:
-        // поставить стены
+
+// 10000 значений координат всего / 5000 клеточек
+// 592 на стены по периметру
+// 4 408 на остальные клетки и свойства
+// while id <= 300:
+// поставить стены
 
 
         private void Window_ContentRendered(object sender, EventArgs e)
